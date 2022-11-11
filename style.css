@@ -1,0 +1,74 @@
+.navbar{
+    background: #8758FF;
+    font-weight: bold;
+    color: black;
+    
+  }
+  .navbar a {
+    color: black;
+  }
+  body {
+    background-color: #F2F2F2;
+  }
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 278px;
+    height: 54px;
+    border-radius: 23px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #87A2FB;
+    font-weight: bold;
+    background: rgb(252, 248, 248);
+  }
+  .form-group {
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+  }
+  .btn {
+    display: block;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 278px;
+    height: 54px;
+    border-radius: 25px;
+    box-shadow: inset 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+    background: #8758FF;
+  }
+  .btn:hover {
+    background: rgb(112, 117, 118);
+  }
+  .card {
+    /* width: var(--cardWidth);
+    height: var(--cardHeight);
+    margin: var(--cardMargin); */
+    /* border: 1px solid #ccc; */
+    border-radius: 34px;
+    background: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+  }
+  .main-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* background: #bbb; */
+  }
+  .card{
+    background-color: black;
+    color: white;
+  }
