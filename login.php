@@ -1,12 +1,36 @@
 <?php
-// ini_set('display_errors', 0);
-session_start();
-include 'db/db.php';
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-  header("location: index.php");
-  exit;
+$login = false;
+$showError = false;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    include 'db.php';
+    $username = $_POST["username"];
+    $password = $_POST["pass"]; 
+    
+     
+    // $sql = "Select * from users where username='$username' AND password='$password'";
+    $sql = "Select * from user_log_system where taste_username='$username'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+    if ($num == 1){
+        while($row=mysqli_fetch_assoc($result)){
+            if (password_verify($password, $row['taste_password'])){ 
+                $login = true;
+                session_start();
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $username;
+                header("location: home.php");
+            } 
+            else{
+                $showError = "Invalid Credentials";
+            }
+        }
+        
+    } 
+    else{
+        $showError = "Invalid Credentials";
+    }
 }
-
+    
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,6 +46,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
   </head>
   <body>
     <?php include ("navbar.php")?>
+    <img class="img" src="icon.png" alt="tasteonway">
     <p class="text-center mt-2 mb-2" style="font-size: 30px; font-weight: bold;">Taste on Way</p>
     <div class="main-section mt-3">
     <div class="card">
