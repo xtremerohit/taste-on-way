@@ -8,7 +8,7 @@
     color: rgb(255, 255, 255);
   }
   body {
-    background-color: #454545;
+    background-color: #000000;
   }
   .form-control {
     display: flex;
@@ -70,7 +70,7 @@
     /* background: #bbb; */
   }
   .card{
-    background: #8bffff;
+    background: #ffffff;
     color: #000000;
   }
   .img {

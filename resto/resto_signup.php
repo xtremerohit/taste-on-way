@@ -25,13 +25,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $sql = "INSERT INTO `resto_log` (`resto_username`, `resto_password`, `email`, `resto_dt`) VALUES ('$username', '$hash', '$email', current_timestamp())";
       $result = mysqli_query($conn, $sql);
       if ($result) {
+        include 'resto_post_db.php';
         $showAlert = true;
+        $username = $_POST['username'];
+        $sql2 = "CREATE TABLE $username (
+          sno INT(25) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+          $username VARCHAR(225) NOT NULL,
+          dish_name VARCHAR(225) NOT NULL,
+          dish_disc VARCHAR(225)  NOT NULL,
+          dish_rate INT(25)  NOT NULL,
+          dish_img MEDIUMBLOB NOT NULL,
+          dish_img_name VARCHAR(225)  NOT NULL,
+          dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+          )";
+        $run = mysqli_query($conn, $sql2);
       }
     } else {
       $showError = "Passwords do not match";
     }
   }
 }
+
 
 ?>
 <!doctype html>

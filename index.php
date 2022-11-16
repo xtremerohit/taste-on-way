@@ -33,7 +33,7 @@ if (!$conn) {
   <?php include("navbar.php") ?>
   <div class="row row-cols-1 row-cols-md-5 mt-3" style="margin-left: auto; margin-right:auto; border-radius: 15px; width: auto; height: 230px; ">
   <?php
-  $sql = "SELECT * FROM `menu1`";
+  $sql = "SELECT * FROM `menu`";
   $result = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($result)) {
     $id = $row['sno'];

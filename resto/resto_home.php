@@ -1,4 +1,21 @@
 <?php
+session_start();
+include 'resto_db.php';
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+  header("location: resto_login.php");
+  exit;
+}elseif (isset($_SESSION['loggedin'])) {
+  $check = $_SESSION['username'];
+  $sql = "SELECT * FROM `resto_log` WHERE `resto_username` = '$check' ";
+
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
+  if ($num == 0) {
+    header("location: resto_login.php");
+  }
+}
+?>
+<?php
 $showAlert = false;
 $showError = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // $exists=false;
 
   // Check whether this username exists
-  $existSql = "SELECT * FROM `menu1` WHERE dish_name = '$dish_name'";
+  $existSql = "SELECT * FROM `menu` WHERE dish_name = '$dish_name'";
   $result = mysqli_query($conn, $existSql);
   $numExistRows = mysqli_num_rows($result);
   if ($numExistRows > 0) {
@@ -33,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     // $exists = false; 
 
-    $sql = "INSERT INTO `menu1` (`dish_name`, `dish_disc`, `dish_img`, `dt`) VALUES ('$dish_name', '$dishdisc', '$img', current_timestamp())";
+    $sql = "INSERT INTO `menu` (`dish_name`, `dish_disc`,`dish_rate`, `dish_img`, `dt`) VALUES ('$dish_name', '$dishdisc','$rate', '$img', current_timestamp())";
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $showAlert = true;
@@ -54,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="resto_home.css">
-  <link rel="stylesheet" href="resto_style.css">
+  <!-- <link rel="stylesheet" href="resto_style.css"> -->
 
 
   <title>Hello, world!</title>
@@ -71,7 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="form-group">
       <!-- <label for="">Password</label> -->
-      <input type="dishdisc" placeholder="dish Info" class="form-control" name="dishdisc" id="dishdisc">
+      <textarea class="form-control" placeholder="dish Info" id="dishdisc" name="dishdisc" rows="3"></textarea>
+      <!-- <input type="dishdisc" placeholder="dish Info" class="form-control" name="dishdisc" id="dishdisc"> -->
     </div>
     <div class="form-group">
       <!-- <label for="">Password</label> -->
@@ -80,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-group">
       <!-- <label for="">Password</label> -->
       <p class="text-center mt-2 mb-2" style="font-size: 15px; font-weight: bold; color: #ffff;">Select img Of Dish</p>
-      <input type="file" name="upload" accept=".png,.gif,.jpg,.webp" required>
+      <input type="file" name="upload"  accept=".png,.gif,.jpg,.webp" required>
     </div>
     <button type="submit" class="btn btn-primary mt-4">Send</button>
   </form>
