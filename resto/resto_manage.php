@@ -97,7 +97,7 @@ if (!$conn) {
             $dish_img = $row['dish_img'];
             // $dish_img_name = $row['dish_img_name'];
 
-            echo '<div class="col mb-2">
+            echo '<div class="row mb-2">
   <div class="card" style="width: 18rem; border-radius: 15px; margin-left: auto; margin-right:auto; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-top: 23px; margin-bottom:23px;">
   <div class="userimg ml-2 mr-2 mt-2 mb-2" style="display: flex; flex-direction: row; width: 35px; height: 35px; border-radius: 50%; background: red;">
   <img src="https://i.pravatar.cc/35" style="border-radius: 50%; margin:auto;" alt="" class="restoprofile">
