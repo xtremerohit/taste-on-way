@@ -36,6 +36,7 @@ if (!$conn) {
   $sql = "SELECT * FROM `menu`";
   $result = mysqli_query($conn, $sql);
   while ($row = mysqli_fetch_assoc($result)) {
+    $username_of_posted_dish = $row['username_of_dish_insert'];
     $id = $row['sno'];
     $dish_name = $row['dish_name'];
     $dish_disc = $row['dish_disc'];
@@ -47,7 +48,7 @@ if (!$conn) {
   <div class="card" style="width: 18rem; border-radius: 15px; margin-left: auto; margin-right:auto; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
   <div class="userimg ml-2 mr-2 mt-2 mb-2" style="display: flex; flex-direction: row; width: 35px; height: 35px; border-radius: 50%; background: red;">
   <img src="https://i.pravatar.cc/35" style="border-radius: 50%; margin:auto;" alt="" class="restoprofile">
-  <p class="restoname ml-2 mr-2" style="font-weight: bold; font-size: 18px; margin-top: auto; margin-bottom:auto;">@Username</p>
+  <p class="restoname ml-2 mr-2" style="font-weight: bold; font-size: 18px; margin-top: auto; margin-bottom:auto;">@'.$username_of_posted_dish.'</p>
       </div>
       <img src="https://source.unsplash.com/500x400/?graps,strawberry" class="card-img-top" style="width: auto; height: 200px; border-radius: 15px;" alt="...">
       <div class="card-body">

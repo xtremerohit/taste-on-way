@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    // else{
    //     die("Error". mysqli_connect_error());
    // }
+   $post_dish_username = $_SESSION['username'];
    $dish_name = $_POST["dishname"];
    $dishdisc = $_POST["dishdisc"];
    $rate = $_POST["rs"];
@@ -50,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    } else {
       // $exists = false; 
 
-      $sql = "INSERT INTO `menu` (`dish_name`, `dish_disc`,`dish_rate`, `dish_img`, `dt`) VALUES ('$dish_name', '$dishdisc','$rate', '$img', current_timestamp())";
+      $sql = "INSERT INTO `menu` (`username_of_dish_insert`, `dish_name`, `dish_disc`,`dish_rate`, `dish_img`, `dt`) VALUES ('$post_dish_username', '$dish_name', '$dishdisc','$rate', '$img', current_timestamp())";
       $result = mysqli_query($conn, $sql);
       if ($result) {
          $server = "localhost";
